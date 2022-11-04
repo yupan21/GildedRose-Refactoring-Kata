@@ -65,10 +65,7 @@ export class Item {
     return item.sellIn < 0;
   }
 
-  private updateSellInDays(item: Item) {
-    if (this.isSulfuras(item)) {
-      return;
-    }
+  protected updateSellInDays(item: Item) {
     item.sellIn = item.sellIn - 1;
   }
 
