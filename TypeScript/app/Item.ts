@@ -17,10 +17,9 @@ export class Item {
   }
 
   protected updateQuality(item: Item) {
-    if (this.quality <= 0) {
-      return;
+    if (this.quality > 0) {
+      this.quality = this.quality - 1;
     }
-    this.quality = this.quality - 1;
   }
 
   protected updateQualityAfterExpired(item: Item) {
