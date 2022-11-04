@@ -34,7 +34,7 @@ describe('Gilded Rose', () => {
     
       });
       console.log();
-      gildedRose.updateQuality();
+      gildedRose.passOneDay();
     }
     console.log(outPutStr)
     
