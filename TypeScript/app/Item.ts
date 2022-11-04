@@ -43,6 +43,12 @@ export class Item {
   }
 
   private updateQualityAfterExpired(item: Item) {
+    if (this.isAgedBrie(item)) {
+      if (item.quality < 50) {
+        item.quality = item.quality + 1;
+      }
+      return;
+    }
     if (!this.isAgedBrie(item)) {
       if (!this.isBackStage(item)) {
         if (item.quality > 0) {
@@ -53,11 +59,7 @@ export class Item {
       } else {
         item.quality = item.quality - item.quality;
       }
-    } else {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-      }
-    }
+    } 
   }
 
   private isExpired(item: Item) {
@@ -65,9 +67,10 @@ export class Item {
   }
 
   private updateSellInDays(item: Item) {
-    if (!this.isSulfuras(item)) {
-      item.sellIn = item.sellIn - 1;
+    if (this.isSulfuras(item)) {
+      return;
     }
+    item.sellIn = item.sellIn - 1;
   }
 
   protected isSulfuras(item: Item) {
