@@ -1,4 +1,5 @@
-import { Item, GildedRose } from '../app/gilded-rose';
+import { GildedRose } from '../app/gilded-rose';
+import { Item } from "../app/Item";
 
 const items = [
   new Item("+5 Dexterity Vest", 10, 20), //
@@ -28,5 +29,5 @@ for (let i = 0; i < days; i++) {
 
   });
   console.log();
-  gildedRose.updateQuality();
+  gildedRose.passOneDay();
 }
