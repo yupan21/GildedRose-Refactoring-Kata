@@ -9,8 +9,8 @@ export class Item {
     this.quality = quality;
   }
   public passOneDay(item: Item) {
-    this.updateQuality(item);
     this.updateSellInDays(item);
+    this.updateQuality(item);
     if (this.isExpired(item)) {
       this.updateQualityAfterExpired(item);
     }
