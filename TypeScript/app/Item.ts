@@ -28,18 +28,6 @@ export class Item {
     this.sellIn = this.sellIn - 1;
   }
 
-  protected isSulfuras(item: Item) {
-    return false;
-  }
-
-  protected isAgedBrie(item: Item) {
-    return false;
-  }
-
-  protected isBackStage(item: Item) {
-    return false;
-  }
-
   private isExpired(item: Item) {
     return this.sellIn < 0;
   }
