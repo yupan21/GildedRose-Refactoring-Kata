@@ -49,17 +49,16 @@ export class Item {
       }
       return;
     }
-    if (!this.isAgedBrie(item)) {
-      if (!this.isBackStage(item)) {
-        if (item.quality > 0) {
-          if (!this.isSulfuras(item)) {
-            item.quality = item.quality - 1;
-          }
-        }
-      } else {
-        item.quality = item.quality - item.quality;
+
+    if (this.isBackStage(item)) {
+      item.quality = item.quality - item.quality;
+      return;
+    }
+    if (item.quality > 0) {
+      if (!this.isSulfuras(item)) {
+        item.quality = item.quality - 1;
       }
-    } 
+    }
   }
 
   private isExpired(item: Item) {
