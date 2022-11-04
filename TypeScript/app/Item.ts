@@ -20,18 +20,8 @@ export class Item {
     this.decreaseQuality();
   }
 
-  private decreaseQuality() {
-    if (this.quality > 0) {
-      this.quality = this.quality - 1;
-    }
-  }
-
   protected updateQualityAfterExpired(item: Item) {
     this.decreaseQuality();
-  }
-
-  private isExpired(item: Item) {
-    return this.sellIn < 0;
   }
 
   protected updateSellInDays(item: Item) {
@@ -48,5 +38,15 @@ export class Item {
 
   protected isBackStage(item: Item) {
     return false;
+  }
+
+  private isExpired(item: Item) {
+    return this.sellIn < 0;
+  }
+
+  private decreaseQuality() {
+    if (this.quality > 0) {
+      this.quality = this.quality - 1;
+    }
   }
 }
