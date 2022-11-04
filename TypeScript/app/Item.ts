@@ -17,56 +17,57 @@ export class Item {
   }
 
   private updateQuality(item: Item) {
-    if (!this.isAgedBrie(item) && !this.isBackStage(item)) {
-      if (item.quality > 0) {
-        if (!this.isSulfuras(item)) {
-          item.quality = item.quality - 1;
+    if (this.isAgedBrie(item) || this.isBackStage(item)) {
+      if (this.quality < 50) {
+        this.quality = this.quality + 1;
+        if (this.isBackStage(item)) {
+          if (this.sellIn < 11) {
+            if (this.quality < 50) {
+              this.quality = this.quality + 1;
+            }
+          }
+          if (this.sellIn < 6) {
+            if (this.quality < 50) {
+              this.quality = this.quality + 1;
+            }
+          }
         }
       }
-    } else {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
-        if (this.isBackStage(item)) {
-          if (item.sellIn < 11) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1;
-            }
-          }
-          if (item.sellIn < 6) {
-            if (item.quality < 50) {
-              item.quality = item.quality + 1;
-            }
-          }
-        }
+      return;
+    }
+
+    if (this.quality > 0) {
+      if (!this.isSulfuras(item)) {
+        this.quality = this.quality - 1;
       }
     }
   }
 
   private updateQualityAfterExpired(item: Item) {
     if (this.isAgedBrie(item)) {
-      if (item.quality < 50) {
-        item.quality = item.quality + 1;
+      if (this.quality < 50) {
+        this.quality = this.quality + 1;
       }
       return;
     }
 
     if (this.isBackStage(item)) {
-      item.quality = item.quality - item.quality;
+      this.quality = this.quality - this.quality;
       return;
     }
-    if (item.quality > 0) {
+    if (this.quality > 0) {
       if (!this.isSulfuras(item)) {
-        item.quality = item.quality - 1;
+        this.quality = this.quality - 1;
       }
     }
   }
 
   private isExpired(item: Item) {
-    return item.sellIn < 0;
+    return this.sellIn < 0;
   }
 
   protected updateSellInDays(item: Item) {
-    item.sellIn = item.sellIn - 1;
+    this.sellIn = this.sellIn - 1;
   }
 
   protected isSulfuras(item: Item) {
