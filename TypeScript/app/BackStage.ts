@@ -26,9 +26,4 @@ export class Backstage extends Item {
 
   }
 
-  private increaseQuality() {
-    if (this.quality < 50) {
-      this.quality = this.quality + 1;
-    }
-  }
 }
