@@ -15,20 +15,22 @@ export class Backstage extends Item {
   }
 
   protected updateQuality(item: Item): void {
-    if (this.quality < 50) {
-      this.quality = this.quality + 1;
-
-      if (this.sellIn < 11) {
-        if (this.quality < 50) {
-          this.quality = this.quality + 1;
-        }
-      }
-      if (this.sellIn < 6) {
-        if (this.quality < 50) {
-          this.quality = this.quality + 1;
-        }
-      }
-
+    if (this.quality >= 50) {
+      return;
     }
+    this.quality = this.quality + 1;
+
+    if (this.sellIn < 11) {
+      if (this.quality < 50) {
+        this.quality = this.quality + 1;
+      }
+    }
+    if (this.sellIn < 6) {
+      if (this.quality < 50) {
+        this.quality = this.quality + 1;
+      }
+    }
+
   }
+
 }
