@@ -11,7 +11,7 @@ export class Backstage extends Item {
   }
 
   protected updateQualityAfterExpired(item: Item): void {
-    this.quality = this.quality - this.quality;
+    this.quality = 0;
   }
 
   protected updateQuality(item: Item): void {
