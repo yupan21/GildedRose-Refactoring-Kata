@@ -8,63 +8,50 @@ export class Item {
     this.sellIn = sellIn;
     this.quality = quality;
   }
-}
-
-export class GildedRose {
-  items: Array<Item>;
-
-  constructor(items = [] as Array<Item>) {
-    this.items = items;
-  }
-
-  passOneDay() {
-    for (let item of this.items) {
-      if (!this.isAgedBrie(item) && !this.isBackStage(item)) {
-        if (item.quality > 0) {
-          if (!this.isSulfuras(item)) {
-            item.quality = item.quality - 1
-          }
-        }
-      } else {
-        if (item.quality < 50) {
-          item.quality = item.quality + 1
-          if (this.isBackStage(item)) {
-            if (item.sellIn < 11) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
-              }
-            }
-            if (item.sellIn < 6) {
-              if (item.quality < 50) {
-                item.quality = item.quality + 1
-              }
-            }
-          }
+  public passOneDay(item: Item) {
+    if (!this.isAgedBrie(item) && !this.isBackStage(item)) {
+      if (item.quality > 0) {
+        if (!this.isSulfuras(item)) {
+          item.quality = item.quality - 1;
         }
       }
-      if (!this.isSulfuras(item)) {
-        item.sellIn = item.sellIn - 1;
-      }
-      if (item.sellIn < 0) {
-        if (!this.isAgedBrie(item)) {
-          if (!this.isBackStage(item)) {
-            if (item.quality > 0) {
-              if (!this.isSulfuras(item)) {
-                item.quality = item.quality - 1
-              }
+    } else {
+      if (item.quality < 50) {
+        item.quality = item.quality + 1;
+        if (this.isBackStage(item)) {
+          if (item.sellIn < 11) {
+            if (item.quality < 50) {
+              item.quality = item.quality + 1;
             }
-          } else {
-            item.quality = item.quality - item.quality
           }
-        } else {
-          if (item.quality < 50) {
-            item.quality = item.quality + 1
+          if (item.sellIn < 6) {
+            if (item.quality < 50) {
+              item.quality = item.quality + 1;
+            }
           }
         }
       }
     }
-
-    return this.items;
+    if (!this.isSulfuras(item)) {
+      item.sellIn = item.sellIn - 1;
+    }
+    if (item.sellIn < 0) {
+      if (!this.isAgedBrie(item)) {
+        if (!this.isBackStage(item)) {
+          if (item.quality > 0) {
+            if (!this.isSulfuras(item)) {
+              item.quality = item.quality - 1;
+            }
+          }
+        } else {
+          item.quality = item.quality - item.quality;
+        }
+      } else {
+        if (item.quality < 50) {
+          item.quality = item.quality + 1;
+        }
+      }
+    }
   }
 
   private isSulfuras(item: Item) {
@@ -78,4 +65,23 @@ export class GildedRose {
   private isBackStage(item: Item) {
     return item.name == 'Backstage passes to a TAFKAL80ETC concert';
   }
+}
+
+export class GildedRose {
+  items: Array<Item>;
+
+  constructor(items = [] as Array<Item>) {
+    this.items = items;
+  }
+
+  passOneDay() {
+    for (let item of this.items) {
+      item.passOneDay(item);
+    }
+
+    return this.items;
+  }
+
+  
+
 }
