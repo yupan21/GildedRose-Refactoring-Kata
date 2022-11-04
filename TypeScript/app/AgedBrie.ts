@@ -15,4 +15,11 @@ export class AgedBrie extends Item {
       this.quality = this.quality + 1;
     }
   }
+
+  protected updateQuality(item: Item): void {
+    if (this.quality < 50) {
+      this.quality = this.quality + 1;
+    }
+  }
+
 }

@@ -16,37 +16,8 @@ export class Item {
     }
   }
 
-  private updateQuality(item: Item) {
-    if (this.isAgedBrie(item)) {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-      }
-      return;
-    }
-    if (this.isBackStage(item)) {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-
-        if (this.sellIn < 11) {
-          if (this.quality < 50) {
-            this.quality = this.quality + 1;
-          }
-        }
-        if (this.sellIn < 6) {
-          if (this.quality < 50) {
-            this.quality = this.quality + 1;
-          }
-        }
-
-      }
-      return;
-    }
-
+  protected updateQuality(item: Item) {
     if (this.quality <= 0) {
-      return;
-    }
-
-    if (this.isSulfuras(item)) {
       return;
     }
     this.quality = this.quality - 1;

@@ -17,4 +17,8 @@ export class Sulfuras extends Item {
   protected updateQualityAfterExpired(item: Item): void {
     
   }
+
+  protected updateQuality(item: Item): void {
+    
+  }
 }
