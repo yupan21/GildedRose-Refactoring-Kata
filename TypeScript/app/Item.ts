@@ -9,6 +9,14 @@ export class Item {
     this.quality = quality;
   }
   public passOneDay(item: Item) {
+    this.updateQuality(item);
+    this.updateSellInDays(item);
+    if (this.isExpired(item)) {
+      this.updateQualityAfterExpired(item);
+    }
+  }
+
+  private updateQuality(item: Item) {
     if (!this.isAgedBrie(item) && !this.isBackStage(item)) {
       if (item.quality > 0) {
         if (!this.isSulfuras(item)) {
@@ -31,10 +39,6 @@ export class Item {
           }
         }
       }
-    }
-    this.updateSellInDays(item);
-    if (this.isExpired(item)) {
-      this.updateQualityAfterExpired(item);
     }
   }
 
