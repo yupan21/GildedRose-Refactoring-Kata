@@ -43,23 +43,11 @@ export class Item {
     }
   }
 
-  private updateQualityAfterExpired(item: Item) {
-    if (this.isAgedBrie(item)) {
-      if (this.quality < 50) {
-        this.quality = this.quality + 1;
-      }
+  protected updateQualityAfterExpired(item: Item) {
+    if (this.quality <= 0) {
       return;
     }
-
-    if (this.isBackStage(item)) {
-      this.quality = this.quality - this.quality;
-      return;
-    }
-    if (this.quality > 0) {
-      if (!this.isSulfuras(item)) {
-        this.quality = this.quality - 1;
-      }
-    }
+    this.quality = this.quality - 1;
   }
 
   private isExpired(item: Item) {

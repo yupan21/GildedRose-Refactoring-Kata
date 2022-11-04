@@ -1,12 +1,16 @@
 import { Item } from "./Item";
 
-export class Backstage extends Item{
+export class Backstage extends Item {
 
   constructor(sellIn, quality) {
     super('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
   }
-  
+
   protected isBackStage(item: Item): boolean {
     return true;
+  }
+
+  protected updateQualityAfterExpired(item: Item): void {
+    this.quality = this.quality - this.quality;
   }
 }
