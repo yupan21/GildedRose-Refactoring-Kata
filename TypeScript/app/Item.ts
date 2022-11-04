@@ -70,15 +70,15 @@ export class Item {
     }
   }
 
-  private isSulfuras(item: Item) {
-    return item.name == 'Sulfuras, Hand of Ragnaros';
+  protected isSulfuras(item: Item) {
+    return false;
   }
 
-  private isAgedBrie(item: Item) {
-    return item.name == 'Aged Brie';
+  protected isAgedBrie(item: Item) {
+    return false;
   }
 
-  private isBackStage(item: Item) {
-    return item.name == 'Backstage passes to a TAFKAL80ETC concert';
+  protected isBackStage(item: Item) {
+    return false;
   }
 }

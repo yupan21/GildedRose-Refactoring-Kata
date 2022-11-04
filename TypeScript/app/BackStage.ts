@@ -6,4 +6,7 @@ export class Backstage extends Item{
     super('Backstage passes to a TAFKAL80ETC concert', sellIn, quality);
   }
   
+  protected isBackStage(item: Item): boolean {
+    return true;
+  }
 }

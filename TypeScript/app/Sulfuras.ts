@@ -6,4 +6,7 @@ export class Sulfuras extends Item{
     super('Sulfuras, Hand of Ragnaros', sellIn, quality);
   }
   
+  protected isSulfuras(item: Item): boolean {
+    return true;
+  }
 }

@@ -6,4 +6,7 @@ export class AgedBrie extends Item{
     super('Aged Brie', sellIn, quality);
   }
   
+  protected isAgedBrie(item: Item): boolean {
+    return true;
+  }
 }
